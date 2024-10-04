@@ -3,6 +3,7 @@ package com.waterProject.waterProject;
 import java.util.ArrayList;
 
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -13,9 +14,9 @@ import org.springframework.web.bind.annotation.RestController;
 public class DataController {
     private ArrayList<Data> dataList = new ArrayList<>();
 
-    @GetMapping("/")
-    public String hello() {
-        return "hello";
+    @DeleteMapping("/deleteData")
+    public void deleteData() {
+        dataList.removeAll(dataList);
     }
     @PostMapping("/setData")
     public void setData(@RequestBody Data newData) {
@@ -30,16 +31,25 @@ public class DataController {
 
     @GetMapping("/getTemperature")
     public Double getTemperature() {
+        if(dataList.isEmpty()) {
+            return 0.0;
+        }
         return dataList.get(dataList.size() - 1).getTemperature();
     }
 
     @GetMapping("/getHumidity")
     public Double getHumidity() {
+        if(dataList.isEmpty()) {
+            return 0.0;
+        }
         return dataList.get(dataList.size() -1).getHumidity();
     }
 
     @GetMapping("getMoisture") 
     public Double getMoisture() {
+        if(dataList.isEmpty()) {
+            return 0.0;
+        }
         return dataList.get(dataList.size() -1).getMoisture();
     }
 

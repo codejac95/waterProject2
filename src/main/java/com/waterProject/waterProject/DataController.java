@@ -20,7 +20,7 @@ public class DataController {
     }
     @PostMapping("/setData")
     public void setData(@RequestBody Data newData) {
-        if(dataList.size() >= 336) {
+        if(dataList.size() >= 672) {
             dataList.remove(0);
         }
         dataList.add(newData);

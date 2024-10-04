@@ -8,11 +8,11 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-@CrossOrigin("*")
+@CrossOrigin(origins = "https://clownfish-app-qdrqn.ondigitalocean.app/")
 @RestController
 public class DataController {
     private ArrayList<Data> dataList = new ArrayList<>();
-    
+
     @PostMapping("/setData")
     public void setData(@RequestBody Data newData) {
         if(dataList.size() >= 336) {

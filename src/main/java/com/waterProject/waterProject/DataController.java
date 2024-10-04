@@ -13,6 +13,10 @@ import org.springframework.web.bind.annotation.RestController;
 public class DataController {
     private ArrayList<Data> dataList = new ArrayList<>();
 
+    @GetMapping("/")
+    public String hello() {
+        return "hello";
+    }
     @PostMapping("/setData")
     public void setData(@RequestBody Data newData) {
         if(dataList.size() >= 336) {

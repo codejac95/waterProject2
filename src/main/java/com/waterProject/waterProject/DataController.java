@@ -40,7 +40,7 @@ public class DataController {
     @GetMapping("/getHumidity")
     public Double getHumidity() {
         if(dataList.isEmpty()) {
-            return 0.0;
+            return null;
         }
         return dataList.get(dataList.size() -1).getHumidity();
     }
@@ -48,7 +48,7 @@ public class DataController {
     @GetMapping("getMoisture") 
     public Double getMoisture() {
         if(dataList.isEmpty()) {
-            return 0.0;
+            return null;
         }
         return dataList.get(dataList.size() -1).getMoisture();
     }

@@ -32,7 +32,7 @@ public class DataController {
     @GetMapping("/getTemperature")
     public Double getTemperature() {
         if(dataList.isEmpty()) {
-            return 0.0;
+            return null;
         }
         return dataList.get(dataList.size() - 1).getTemperature();
     }

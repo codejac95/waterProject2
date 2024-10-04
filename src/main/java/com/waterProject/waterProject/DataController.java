@@ -1,6 +1,7 @@
 package com.waterProject.waterProject;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -8,16 +9,14 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.RequestParam;
+
 
 @CrossOrigin(origins = "https://clownfish-app-qdrqn.ondigitalocean.app/")
 @RestController
 public class DataController {
     private ArrayList<Data> dataList = new ArrayList<>();
 
-    @DeleteMapping("/deleteData")
-    public void deleteData() {
-        dataList.removeAll(dataList);
-    }
     @PostMapping("/setData")
     public void setData(@RequestBody Data newData) {
         if(dataList.size() >= 672) {
@@ -53,6 +52,11 @@ public class DataController {
         return dataList.get(dataList.size() -1).getMoisture();
     }
 
+    @GetMapping("getList")
+    public List<Data> getList() {
+        return dataList;
+    }
+
     @GetMapping("/getAverageData")
     public Data getAverageData() {        
         double avgTemperature = dataList.stream()
@@ -72,5 +76,10 @@ public class DataController {
             avgMoisture = Math.round(avgMoisture * 10.0) / 10.0;
 
         return new Data(avgTemperature, avgHumidity, avgMoisture);
+    }
+
+    @DeleteMapping("/deleteData")
+    public void deleteData() {
+        dataList.removeAll(dataList);
     }
 }
